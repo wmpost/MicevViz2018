@@ -1,0 +1,511 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.String?>
+<?import java.net.URL?>
+<?import javafx.collections.FXCollections?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.CheckBox?>
+<?import javafx.scene.control.ChoiceBox?>
+<?import javafx.scene.control.CustomMenuItem?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ListView?>
+<?import javafx.scene.control.Menu?>
+<?import javafx.scene.control.MenuBar?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.control.SeparatorMenuItem?>
+<?import javafx.scene.control.Slider?>
+<?import javafx.scene.control.SplitPane?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.control.Tooltip?>
+<?import javafx.scene.input.KeyCodeCombination?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.shape.Rectangle?>
+
+<VBox fx:id="rootVbox" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="1280.0" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="micevisualization.AppStageController">
+  <children>
+    <MenuBar VBox.vgrow="NEVER">
+      <menus>
+        <Menu mnemonicParsing="false" text="_File">
+          <items>
+            <CustomMenuItem mnemonicParsing="false" onAction="#openFileAction">
+                <content>
+                    <Label text="Open...                    ">
+                        <tooltip>
+                          <Tooltip text="Open a data set file to read from (Ctrl-O, Cmd-O)" />
+                      </tooltip>
+                    </Label>
+                </content>
+                <accelerator>
+                    <KeyCodeCombination alt="UP" code="o" control="DOWN" meta="UP" shift="UP" shortcut="UP" />
+                </accelerator>
+            </CustomMenuItem>
+            <CustomMenuItem fx:id="saveMenuItem" disable="true" mnemonicParsing="false" onAction="#saveFileAction">
+                <content>
+                    <Label text="Save                       ">
+                        <tooltip>
+                          <Tooltip text="Save the current session's data (Ctrl-S, Cmd-S)" />
+                      </tooltip>
+                    </Label>
+                </content>
+                <accelerator>
+                    <KeyCodeCombination alt="UP" code="s" control="DOWN" meta="UP" shift="UP" shortcut="UP" />
+                </accelerator>
+            </CustomMenuItem>
+            <CustomMenuItem fx:id="exportMenuItem" disable="true" mnemonicParsing="false" onAction="#exportImage">
+                <content>
+                    <Label text="Export Image...            ">
+                        <tooltip>
+                          <Tooltip text="Export the current visualization as an image file (Ctrl-E, Cmd-E)" />
+                      </tooltip>
+                    </Label>
+                </content>
+                <accelerator>
+                    <KeyCodeCombination alt="UP" code="e" control="DOWN" meta="UP" shift="UP" shortcut="UP" />
+                </accelerator>
+            </CustomMenuItem>
+            <CustomMenuItem fx:id="exportAnimationItem" disable="true" mnemonicParsing="false" onAction="#exportAnimation">
+                <content>
+                    <Label text="Export Animation...        ">
+                        <tooltip>
+                          <Tooltip text="Export the current animation visualization in an image folder (Ctrl-A, Cmd-A)" />
+                      </tooltip>
+                    </Label>
+                </content>
+                <accelerator>
+                    <KeyCodeCombination alt="UP" code="e" control="DOWN" meta="UP" shift="UP" shortcut="UP" />
+                </accelerator>
+            </CustomMenuItem>
+            <SeparatorMenuItem mnemonicParsing="false" />
+            <CustomMenuItem mnemonicParsing="false" onAction="#exitApplication">
+                <content>
+                    <Label text="Exit                       ">
+                        <tooltip>
+                          <Tooltip text="Exit the program." />
+                      </tooltip>
+                    </Label>
+                </content>
+            </CustomMenuItem>
+          </items>
+        </Menu>
+        <Menu mnemonicParsing="false" text="_Help">
+            <items>
+             <CustomMenuItem fx:id="helpDocumentationItem" mnemonicParsing="false" onAction="#showHelpDocumentationAction">
+                <content>
+                    <Label text="Documentation                  ">
+                        <tooltip>
+                          <Tooltip text="Displays the guide to using the software." />
+                      </tooltip>
+                    </Label>
+                </content>
+            </CustomMenuItem>
+            <CustomMenuItem mnemonicParsing="false" onAction="#About">
+                <content>
+                    <Label text="About                      ">
+                        <tooltip>
+                          <Tooltip text="Exit the program." />
+                      </tooltip>
+                    </Label>
+                </content>
+            </CustomMenuItem>
+            </items>
+            <accelerator>
+               <KeyCodeCombination alt="UP" code="h" control="DOWN" meta="UP" shift="UP" shortcut="UP" />
+            </accelerator>
+        </Menu>
+      </menus>
+    </MenuBar>
+    <SplitPane id="mainSplitPane" fx:id="mainSplitPane" dividerPositions="0.20040080160320642, 0.7805611222444889" focusTraversable="true" prefHeight="-1.0" prefWidth="-1.0" VBox.vgrow="ALWAYS">
+      <items>
+        <ScrollPane fitToWidth="true" maxWidth="250.0" minWidth="250.0">
+           <content>
+               <AnchorPane fx:id="sessionsAnchorPane" disable="true" maxWidth="250.0" prefHeight="546.0" prefWidth="250.0">
+                 <children>
+                   <Label alignment="CENTER" layoutX="21.0" layoutY="14.0" minWidth="60.0" prefHeight="27.0" prefWidth="157.0" styleClass="headerLabel" text="Session Manager" textAlignment="CENTER" wrapText="true" AnchorPane.leftAnchor="20.0" AnchorPane.rightAnchor="20.0">
+                </Label>
+                         <ListView fx:id="sessionsListView" layoutX="20.0" layoutY="102.0" prefHeight="184.0" prefWidth="184.0" AnchorPane.leftAnchor="20.0" AnchorPane.rightAnchor="20.0" />
+                         <Label alignment="CENTER" layoutX="20.0" layoutY="75.0" text="Recent sessions:" textAlignment="CENTER" AnchorPane.leftAnchor="20.0" AnchorPane.rightAnchor="20.0">
+                            <padding>
+                               <Insets bottom="5.0" top="5.0" />
+                            </padding>
+                         </Label>
+                         <Button fx:id="sessionsLoadButton" layoutX="20.0" layoutY="299.0" mnemonicParsing="false" onAction="#loadSessionFromManagerAction" text="Load Selected" AnchorPane.leftAnchor="20.0" AnchorPane.rightAnchor="20.0">
+                             <tooltip>
+                                 <Tooltip text="Load the selected session." />
+                             </tooltip>
+                         </Button>
+                         <Button fx:id="sessionsDeleteButton" layoutX="20.0" layoutY="335.0" mnemonicParsing="false" onAction="#deleteSessionFileAction" prefHeight="25.0" prefWidth="144.0" text="Delete Selected" AnchorPane.leftAnchor="20.0" AnchorPane.rightAnchor="20.0">
+                             <tooltip>
+                                 <Tooltip text="Delete the selected session (data set files will remain on disk)." />
+                             </tooltip>
+                         </Button>
+                        <Button fx:id="totalRangeExport" layoutX="74.0" layoutY="437.0" mnemonicParsing="false" onAction="#totalTimeInRangeAction" text="Export RFID Info" />
+                        <Label layoutX="25.0" layoutY="413.0" text="Write Mouse Total Times to Excel File:" />
+                 </children>
+               </AnchorPane>
+           </content>
+        </ScrollPane>
+            <SplitPane dividerPositions="0.8875661375661376" orientation="VERTICAL" prefHeight="200.0" prefWidth="160.0">
+               <items>
+              
+              <StackPane id="viewerPane" fx:id="viewerPane" alignment="CENTER" />
+                  <GridPane prefWidth="762.0">
+                     <children>
+                        <Rectangle arcHeight="5.0" arcWidth="5.0" fill="BLUE" height="15.0" stroke="BLACK" strokeType="INSIDE" width="45.0" GridPane.halignment="CENTER" GridPane.valignment="CENTER" />
+                        <Rectangle arcHeight="5.0" arcWidth="5.0" height="15.0" stroke="BLACK" strokeType="INSIDE" width="45.0" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="CENTER" />
+                        <Rectangle arcHeight="5.0" arcWidth="5.0" fill="MAGENTA" height="15.0" stroke="BLACK" strokeType="INSIDE" width="45.0" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.valignment="CENTER" />
+                        <Rectangle arcHeight="5.0" arcWidth="5.0" fill="BROWN" height="15.0" stroke="BLACK" strokeType="INSIDE" width="45.0" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="CENTER" />
+                        <Rectangle arcHeight="5.0" arcWidth="5.0" fill="YELLOWGREEN" height="15.0" stroke="BLACK" strokeType="INSIDE" width="45.0" GridPane.columnIndex="4" GridPane.halignment="CENTER" GridPane.valignment="CENTER" />
+                        <Rectangle arcHeight="5.0" arcWidth="5.0" fill="RED" height="15.0" stroke="BLACK" strokeType="INSIDE" width="45.0" GridPane.columnIndex="4" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="CENTER" />
+                        <Rectangle arcHeight="5.0" arcWidth="5.0" fill="AQUA" height="15.0" stroke="BLACK" strokeType="INSIDE" width="45.0" GridPane.columnIndex="6" GridPane.halignment="CENTER" GridPane.valignment="CENTER" />
+                        <Rectangle arcHeight="5.0" arcWidth="5.0" fill="DARKGRAY" height="15.0" stroke="BLACK" strokeType="INSIDE" width="45.0" GridPane.columnIndex="6" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="CENTER" />
+                        <Label fx:id="blueBehaviour" text="Behavior" GridPane.columnIndex="1" GridPane.halignment="CENTER" />
+                        <Label fx:id="blackBehaviour" text="Behavior" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="1" />
+                        <Label fx:id="magentaBehaviour" text="Behavior" GridPane.columnIndex="3" GridPane.halignment="CENTER" />
+                        <Label fx:id="brownBehaviour" text="Behavior" GridPane.columnIndex="3" GridPane.halignment="CENTER" GridPane.rowIndex="1" />
+                        <Label fx:id="greenBehaviour" text="Behavior" GridPane.columnIndex="5" GridPane.halignment="CENTER" />
+                        <Label fx:id="redBehaviour" text="Behavior" GridPane.columnIndex="5" GridPane.halignment="CENTER" GridPane.rowIndex="1" />
+                        <Label fx:id="cyanBehaviour" text="Behavior" GridPane.columnIndex="7" GridPane.halignment="CENTER" />
+                        <Label fx:id="greyBehaviour" text="Behavior" GridPane.columnIndex="7" GridPane.halignment="CENTER" GridPane.rowIndex="1" />
+                     </children>
+                     <columnConstraints>
+                        <ColumnConstraints hgrow="SOMETIMES" />
+                        <ColumnConstraints hgrow="SOMETIMES" />
+                        <ColumnConstraints hgrow="SOMETIMES" />
+                        <ColumnConstraints hgrow="SOMETIMES" />
+                        <ColumnConstraints hgrow="SOMETIMES" />
+                        <ColumnConstraints hgrow="SOMETIMES" />
+                        <ColumnConstraints hgrow="SOMETIMES" />
+                        <ColumnConstraints hgrow="SOMETIMES" />
+                     </columnConstraints>
+                     <rowConstraints>
+                        <RowConstraints vgrow="SOMETIMES" />
+                        <RowConstraints vgrow="SOMETIMES" />
+                     </rowConstraints>
+                  </GridPane>
+               </items>
+            </SplitPane>
+        
+        <ScrollPane fx:id="visualizationOptionsScrollPane" fitToWidth="true" maxWidth="250.0" minWidth="250.0">
+           <content>
+               <AnchorPane fx:id="visualizationOptionsAnchorPane" disable="true" maxWidth="250.0" prefHeight="710.0" prefWidth="250.0">
+                 <children>
+                     <VBox prefHeight="692.0" prefWidth="235.0">
+                        <children>
+                           <Label alignment="CENTER" prefHeight="27.0" prefWidth="263.0" styleClass="headerLabel" text="Visualization Options">
+                              <VBox.margin>
+                                 <Insets left="20.0" right="20.0" top="15.0" />
+                              </VBox.margin>
+                           </Label>
+                           <HBox>
+                              <children>
+                                  <VBox>
+                                     <children>
+                                         <Label alignment="CENTER" prefHeight="27.0" prefWidth="263.0" text="Visualization Type:" textAlignment="CENTER">
+                                            <padding>
+                                               <Insets bottom="5.0" top="10.0" />
+                                            </padding>
+                                         </Label>
+                                         <ChoiceBox fx:id="visualizationTypeChoiceBox" prefHeight="25.0" prefWidth="253.0">
+                                            <items>
+                                                 <FXCollections fx:factory="observableArrayList">
+                                                     <String fx:id="staticMapOption" fx:value="Static" />
+                                                     <String fx:id="animatedMapOption" fx:value="Animated" />
+                                                 </FXCollections>
+                                             </items>
+                                             <VBox.margin>
+                                               <Insets left="20.0" right="20.0" />
+                                            </VBox.margin>
+                                             <tooltip>
+                                                 <Tooltip text="Selects the speed of the visualization, immediate (Static) or over time (Animated)." />
+                                             </tooltip>
+                                        </ChoiceBox>
+                                     </children>
+                                  </VBox>
+                                  <VBox>
+                                     <children>
+                                         <Label alignment="CENTER" prefHeight="27.0" prefWidth="263.0" text="Map Type:" textAlignment="CENTER">
+                                            <padding>
+                                               <Insets bottom="5.0" top="10.0" />
+                                            </padding>
+                                         </Label>
+                                         <ChoiceBox fx:id="mapTypeChoiceBox" prefHeight="25.0" prefWidth="253.0">
+                                            <items>
+                                                 <FXCollections fx:factory="observableArrayList">
+                                                     <String fx:id="heatMapOption" fx:value="Heat" />
+                                                     <String fx:id="vectorMapOption" fx:value="Vector" />
+                                                     <String fx:id="overlayMapOption" fx:value="Overlay" />
+                                                 </FXCollections>
+                                             </items>
+                                             <VBox.margin>
+                                               <Insets left="20.0" right="10.0" />
+                                            </VBox.margin>
+                                             <tooltip>
+                                                 <Tooltip text="Selects the type of map to visualize." />
+                                             </tooltip>
+                                        </ChoiceBox>
+                                     </children>
+                                  </VBox>
+                              </children>
+                           </HBox>
+                           <HBox fx:id="gridOptionsCheckBoxesHBox">
+                              <children>
+                                  <CheckBox id="showGridLinesCheckBox" fx:id="showGridLinesCheckBox" text="grid lines">
+                                     <HBox.margin>
+                                        <Insets bottom="0.0" left="20.0" right="20.0" top="10.0" />
+                                     </HBox.margin>
+                                     <tooltip>
+                                          <Tooltip text="Toggles the visibility of the grid lines in the visualization on and off." />
+                                      </tooltip>
+                                  </CheckBox>
+                                  <CheckBox id="showGridNumbersCheckBox" fx:id="showGridNumbersCheckBox" text="grid numbers">
+                                     <HBox.margin>
+                                        <Insets bottom="0.0" left="20.0" right="0.0" top="10.0" />
+                                     </HBox.margin>
+                                     <tooltip>
+                                          <Tooltip text="Toggles the visibility of the grid sector numbers in the visualization on and off." />
+                                      </tooltip>
+                                  </CheckBox>
+                              </children>
+                           </HBox>
+                              <GridPane minHeight="-Infinity" prefHeight="210.0">
+                                <columnConstraints>
+                                  <ColumnConstraints hgrow="SOMETIMES" maxWidth="113.0" minWidth="10.0" prefWidth="50.0" />
+                                  <ColumnConstraints hgrow="SOMETIMES" maxWidth="185.0" minWidth="10.0" prefWidth="185.0" />
+                                </columnConstraints>
+                                <rowConstraints>
+                                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                    <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                    <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                    <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                    <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                    <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                    <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                </rowConstraints>
+                                 <children>
+                                 <ListView fx:id="selectedMiceListView" minHeight="150.0" prefHeight="170.0" prefWidth="101.0" GridPane.columnIndex="1" GridPane.rowIndex="1" GridPane.rowSpan="2147483647">
+                                    <tooltip>
+                                         <Tooltip text="Selects which mice to visualize. Can Shift-Click and/or Ctrl-Click (Cmd-Click) to select multiple mice." />
+                                     </tooltip>
+                                 </ListView>
+                                 <Label alignment="CENTER" prefHeight="27.0" prefWidth="244.0" text="Selected Mice:" textAlignment="CENTER" GridPane.columnIndex="1">
+                                    <padding>
+                                       <Insets bottom="10.0" top="10.0" />
+                                    </padding>
+                                       <GridPane.margin>
+                                          <Insets />
+                                       </GridPane.margin>
+                                 </Label>
+                                    <Rectangle arcHeight="5.0" arcWidth="5.0" fill="BLUE" height="15.0" stroke="BLACK" strokeType="INSIDE" width="45.0" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="CENTER" />
+                                    <Rectangle arcHeight="5.0" arcWidth="5.0" height="15.0" stroke="BLACK" strokeType="INSIDE" width="45.0" GridPane.halignment="CENTER" GridPane.rowIndex="2" GridPane.valignment="CENTER" />
+                                    <Rectangle arcHeight="5.0" arcWidth="5.0" fill="MAGENTA" height="15.0" stroke="BLACK" strokeType="INSIDE" width="45.0" GridPane.halignment="CENTER" GridPane.rowIndex="3" GridPane.valignment="CENTER" />
+                                    <Rectangle arcHeight="5.0" arcWidth="5.0" fill="BROWN" height="15.0" stroke="BLACK" strokeType="INSIDE" width="45.0" GridPane.halignment="CENTER" GridPane.rowIndex="4" GridPane.valignment="CENTER" />
+                                    <Rectangle arcHeight="5.0" arcWidth="5.0" fill="YELLOWGREEN" height="15.0" stroke="BLACK" strokeType="INSIDE" width="45.0" GridPane.halignment="CENTER" GridPane.rowIndex="5" GridPane.valignment="CENTER" />
+                                    <Rectangle arcHeight="5.0" arcWidth="5.0" fill="RED" height="15.0" stroke="BLACK" strokeType="INSIDE" width="45.0" GridPane.halignment="CENTER" GridPane.rowIndex="6" GridPane.valignment="CENTER" />
+                                    <Rectangle arcHeight="5.0" arcWidth="5.0" fill="AQUA" height="15.0" stroke="BLACK" strokeType="INSIDE" width="45.0" GridPane.halignment="CENTER" GridPane.rowIndex="7" GridPane.valignment="CENTER" />
+                                    <Rectangle arcHeight="5.0" arcWidth="5.0" fill="DARKGRAY" height="15.0" stroke="BLACK" strokeType="INSIDE" width="45.0" GridPane.halignment="CENTER" GridPane.rowIndex="8" GridPane.valignment="CENTER" />
+                                 </children>
+                                 <VBox.margin>
+                                    <Insets top="10.0" />
+                                 </VBox.margin>
+                              </GridPane>
+                           <VBox fx:id="dataRangeControlVBox" alignment="CENTER" prefWidth="150.0">
+                              <children>
+                                  <Label alignment="CENTER" prefWidth="136.0" text="Start" textAlignment="CENTER">
+                                       <padding>
+                                         <Insets bottom="5.0" top="5.0" />
+                                      </padding>
+                                      <VBox.margin>
+                                         <Insets left="20.0" right="20.0" top="10.0" />
+                                      </VBox.margin>
+                                   </Label>
+                                 <HBox>
+                                    <children>
+                                          <TextArea id="startDataRangeTextArea" fx:id="startDataRangeTextArea" maxHeight="40.0" minHeight="40.0" prefHeight="40.0">
+                                              <HBox.margin>
+                                                <Insets left="20.0" right="10.0" />
+                                             </HBox.margin>
+                                             <tooltip>
+                                                <Tooltip text="Specifies the starting data entry to begin the visualization at. Must be in MM/dd/yyyy HH:mm:ss.SSS format." />
+                                            </tooltip>
+                                          </TextArea>
+                                          <ChoiceBox fx:id="startDataRangeChoiceBox" maxHeight="40.0" minHeight="40.0" minWidth="30" prefHeight="40.0" prefWidth="30">
+                                              <HBox.margin>
+                                                  <Insets right="20.0" top="0.0" />
+                                              </HBox.margin>
+                                              <tooltip>
+                                                  <Tooltip text="Specifies timestamps for the beginning of each fifth of the data set (ex. 0/5, 1/5, 2/5, 3/5, 4/5, 5/5)." />
+                                              </tooltip>
+                                          </ChoiceBox>
+                                    </children>
+                                  </HBox>
+                              </children>
+                           </VBox>
+                           <VBox alignment="CENTER" prefWidth="150.0">
+                              <children>
+                                  <Label alignment="CENTER" prefWidth="136.0" text="Stop" textAlignment="CENTER">
+                                       <padding>
+                                         <Insets bottom="5.0" top="5.0" />
+                                      </padding>
+                                      <VBox.margin>
+                                         <Insets left="20.0" right="20.0" />
+                                      </VBox.margin>
+                                   </Label>
+                                  <HBox>
+                                     <children>
+                                          <TextArea id="stopDataRangeTextArea" fx:id="stopDataRangeTextArea" maxHeight="40.0" minHeight="40.0" prefHeight="40.0">
+                                              <HBox.margin>
+                                                <Insets left="20.0" right="10.0" />
+                                             </HBox.margin>
+                                             <tooltip>
+                                                <Tooltip text="Specifies the ending data entry to stop the visualization at. Must be in MM/dd/yyyy HH:mm:ss.SSS format." />
+                                            </tooltip>
+                                          </TextArea>
+                                          <ChoiceBox fx:id="stopDataRangeChoiceBox" maxHeight="40.0" minHeight="40.0" minWidth="30" prefHeight="40.0" prefWidth="30">
+                                              <HBox.margin>
+                                                  <Insets right="20.0" top="0.0" />
+                                              </HBox.margin>
+                                              <tooltip>
+                                                  <Tooltip text="Specifies timestamps for the beginning of each fifth of the data set (ex. 0/5, 1/5, 2/5, 3/5, 4/5, 5/5)." />
+                                              </tooltip>
+                                          </ChoiceBox>
+                                     </children>
+                                  </HBox>
+                              </children>
+                           </VBox>
+                           <VBox fx:id="animationOptionsVBox" disable="true">
+                              <children>
+                                  <!-- (Parker) NOTE: The below commented out HBox may be used in the future. Do not delete until end of poject!!! -->
+      <!--                            <HBox>
+                                      <children>
+                                          <Button fx:id="generateAnimatedMapButton" text="Play" prefWidth="80.0" minWidth="80.0" onAction="#generateAnimatedMapAction">
+                                              <graphic>
+                                                  <ImageView fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
+                                                    <image>
+                                                      <Image url="resources/play.png" />
+                                                    </image>
+                                                  </ImageView>
+                                              </graphic>
+                                            <padding>
+                                                <Insets bottom="5.0" top="5.0" left="5.0" right="5.0 "/>
+                                            </padding>
+                                            <HBox.margin>
+                                                <Insets top="10.0" bottom="10.0" left="20.0" right="20.0 "/>
+                                            </HBox.margin>
+                                          </Button>
+                                      </children>
+                                  </HBox>-->
+                                  <VBox alignment="CENTER" prefWidth="150.0">
+                                     <children>
+                                        <Label alignment="CENTER" prefWidth="136.0" text="Current Frame" textAlignment="CENTER">
+                                            <padding>
+                                              <Insets bottom="5.0" top="10.0" />
+                                           </padding>
+                                           <VBox.margin>
+                                              <Insets left="20.0" right="20.0" />
+                                           </VBox.margin>
+                                        </Label>
+                                        <TextArea fx:id="currentAnimationFrame" editable="False" maxHeight="26.0" minHeight="26.0" prefHeight="26.0">
+                                            <VBox.margin>
+                                              <Insets left="20.0" right="20.0" />
+                                           </VBox.margin>
+                                           <tooltip>
+                                              <Tooltip text="Displays the current data set row in the animation (read-only)." />
+                                          </tooltip>
+                                        </TextArea>
+                                     </children>
+                                  </VBox>
+                                  <Label alignment="CENTER" prefHeight="37.0" prefWidth="254.0" text="Frame Delay (ms between frames)" textAlignment="CENTER">
+                                     <padding>
+                                        <Insets bottom="5.0" top="10.0" />
+                                     </padding>
+                                     <VBox.margin>
+                                        <Insets left="20.0" right="20.0" />
+                                     </VBox.margin>
+                                  </Label>
+                                  <Slider fx:id="animationSpeedSlider" max="1000" min="1" prefHeight="14.0" prefWidth="200.0" showTickLabels="true" showTickMarks="true" value="100">
+                                     <VBox.margin>
+                                        <Insets left="20.0" right="20.0" />
+                                     </VBox.margin>
+                                     <tooltip>
+                                          <Tooltip text="Selects the speed of the animated visualization in terms of delay in milliseconds between frames." />
+                                      </tooltip>
+                                  </Slider>
+                              </children>
+                           </VBox>
+                           <Button fx:id="generateButton" mnemonicParsing="false" onAction="#generateMapAction" prefWidth="239.0" text="Generate Static Map">
+                              <VBox.margin>
+                                 <Insets bottom="10.0" left="20.0" right="20.0" top="30.0" />
+                              </VBox.margin>
+                               <tooltip>
+                                   <Tooltip text="Generates a visualization based on the current options." />
+                               </tooltip>
+                           </Button>
+                              <GridPane>
+                                <columnConstraints>
+                                  <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                  <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                </columnConstraints>
+                                <rowConstraints>
+                                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                </rowConstraints>
+                                 <children>
+                                    <Button fx:id="pauseButton" mnemonicParsing="false" onAction="#generateMapAction" text="Pause" GridPane.halignment="CENTER" />
+                                    <Button fx:id="rewind" mnemonicParsing="false" onAction="#rewindAction" text="Rewind" GridPane.columnIndex="1" GridPane.halignment="CENTER" />
+                                 </children>
+                              </GridPane>
+                        </children>
+                     </VBox>
+                 </children>
+               </AnchorPane>
+           </content>
+          </ScrollPane>
+      </items>
+    </SplitPane>
+        <HBox alignment="CENTER_LEFT">
+           <children>
+               <Label fx:id="leftStatus" />
+           </children>
+            <padding>
+                <Insets left="5.0" right="5.0" />
+            </padding>
+        </HBox>
+<!--    <GridPane>
+        <children>
+            <HBox alignment="CENTER_LEFT" GridPane.columnIndex="0" GridPane.rowIndex="0">
+                <Label fx:id="leftStatus" text=""/>
+                <padding>
+                    <Insets right="5.0" left="5.0" />
+                </padding>
+            </HBox>
+            <HBox alignment="CENTER" GridPane.columnIndex="1" GridPane.rowIndex="0">
+                <ProgressBar fx:id="progressBar" progress="0.0" prefWidth="300.0"/>
+            </HBox>
+            <HBox alignment="CENTER_RIGHT" GridPane.columnIndex="2" GridPane.rowIndex="0">
+                <Label text="Right Status"/>
+                <padding>
+                    <Insets right="5.0" left="5.0" />
+                </padding>
+            </HBox>
+        </children>
+        <columnConstraints>
+            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" percentWidth="25.0" prefWidth="100.0" />
+            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" percentWidth="50.0" prefWidth="100.0" />
+            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" percentWidth="25.0" prefWidth="100.0" />
+        </columnConstraints>
+    </GridPane>-->
+  </children>
+  
+  <stylesheets>
+        <URL value="@GUIStyle.css" />
+  </stylesheets>
+  
+</VBox>

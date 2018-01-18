@@ -1,0 +1,15 @@
+<component name="libraryTable">
+  <library name="resources1">
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/MiceVisualizationFinal/src/resources/poi-ooxml-3.16.jar!/" />
+      <root url="jar://$PROJECT_DIR$/MiceVisualizationFinal/src/resources/poi-3.16.jar!/" />
+      <root url="jar://$PROJECT_DIR$/MiceVisualizationFinal/src/resources/xmlbeans-2.6.0.jar!/" />
+      <root url="jar://$PROJECT_DIR$/MiceVisualizationFinal/src/resources/poi-excelant-3.16.jar!/" />
+      <root url="jar://$PROJECT_DIR$/MiceVisualizationFinal/src/resources/gson-2.8.0.jar!/" />
+      <root url="jar://$PROJECT_DIR$/MiceVisualizationFinal/src/resources/commons-collections4-4.1.jar!/" />
+      <root url="jar://$PROJECT_DIR$/MiceVisualizationFinal/src/resources/poi-ooxml-schemas-3.9.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>

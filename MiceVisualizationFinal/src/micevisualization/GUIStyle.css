@@ -1,0 +1,29 @@
+#mainSplitPane, #viewerImage {
+    -fx-background-color: lavender;
+}
+
+.headerLabel {
+    -fx-fill: black;
+    -fx-font-size: 18px;
+}
+
+#viewerPane {
+    -fx-background-color: gray;
+    -fx-border-width: 5px;
+}
+
+#playButton {
+    -fx-font-size: 18px;
+}
+
+.helpHeader {
+    -fx-font-size: 22px;
+    -fx-font-weight: bold;
+    -fx-padding: 15px;
+    -fx-font-color: red;
+}
+
+.helpVBox {
+    -fx-spacing: 15;
+    -fx-padding: 15px;
+}

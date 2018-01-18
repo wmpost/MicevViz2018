@@ -1,0 +1,22 @@
+<component name="ArtifactManager">
+  <artifact type="jar" build-on-make="true" name="MiceVisualizationFinal:jar">
+    <output-path>$PROJECT_DIR$/out/artifacts/MiceVisualizationFinal_jar</output-path>
+    <root id="archive" name="MiceVisualizationFinal.jar">
+      <element id="module-output" name="MiceVisualizationFinal" />
+      <element id="extracted-dir" path="$PROJECT_DIR$/MiceVisualizationFinal/src/resources/poi-ooxml-3.16.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$PROJECT_DIR$/MiceVisualizationFinal/src/resources/poi-3.16.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$PROJECT_DIR$/MiceVisualizationFinal/src/resources/xmlbeans-2.6.0.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$PROJECT_DIR$/MiceVisualizationFinal/src/resources/poi-excelant-3.16.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$PROJECT_DIR$/MiceVisualizationFinal/src/resources/gson-2.8.0.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$PROJECT_DIR$/MiceVisualizationFinal/src/resources/commons-collections4-4.1.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$PROJECT_DIR$/MiceVisualizationFinal/src/resources/poi-ooxml-schemas-3.9.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$PROJECT_DIR$/MiceVisualizationFinal/build/classes/resources/gson-2.8.0.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$PROJECT_DIR$/MiceVisualizationFinal/build/classes/resources/commons-collections4-4.1.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$PROJECT_DIR$/MiceVisualizationFinal/build/classes/resources/poi-excelant-3.16.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$PROJECT_DIR$/MiceVisualizationFinal/build/classes/resources/poi-3.16.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$PROJECT_DIR$/MiceVisualizationFinal/build/classes/resources/xmlbeans-2.6.0.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$PROJECT_DIR$/MiceVisualizationFinal/build/classes/resources/poi-ooxml-3.16.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$PROJECT_DIR$/MiceVisualizationFinal/build/classes/resources/poi-ooxml-schemas-3.9.jar" path-in-jar="/" />
+    </root>
+  </artifact>
+</component>
